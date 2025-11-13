@@ -1,0 +1,30 @@
+[tool.mypy]
+# 1. Target the correct Python version for accurate type inference
+python_version = "3.14.0"
+
+# 2. Recommended: Enable the 'strict' mode. This turns on many checks
+# that are crucial for high-quality code.
+# You can uncomment this line for maximum safety:
+# strict = true
+
+# 3. Individual Strictness Flags (if you can't start with 'strict = true')
+# These are essential for catching issues like the one in your review:
+
+# Forces mypy to check all function bodies (important)
+check_untyped_defs = true
+
+# This prevents passing 'None' where an optional type (e.g., str | None) is not expected.
+# Crucial for catching your recent TypeError before it occurs.
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+
+# Require that functions lacking a return annotation are explicitly marked as `-> Any`
+disallow_incomplete_defs = true
+
+# Warns if an annotated function implicitly returns None (default return value in Python)
+warn_return_any = true
+
+# Ensures every code path in a function returns a value if it's annotated to return one.
+# For example, if parse_line was annotated -> tuple[Decimal, str], this would warn
+# that the malformed-line-length branch doesn't return the required type.
+warn_no_return = true
