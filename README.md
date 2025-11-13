@@ -1,3 +1,3 @@
 # currency-aggregator
 
-A simple aggregator of currencies via processing an input file. Includes basic error handling
+Small Python project for aggregating currencies from an input data file, includes some basic error handling
